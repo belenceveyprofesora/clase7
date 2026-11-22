@@ -1,0 +1,174 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden; /* Evita scroll en el tablero completo */
+    background-color: #d4c3b3; /* Color tipo corcho suave */
+    background-image: radial-gradient(#b8a28c 10%, transparent 11%);
+    background-size: 10px 10px;
+}
+
+/* Barra de herramientas */
+.toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: rgba(40, 40, 40, 0.9);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.toolbar h1 { margin: 0; font-size: 1.2rem; margin-right: 20px;}
+.toolbar-left, .toolbar-right { display: flex; align-items: center; gap: 15px; }
+
+button {
+    cursor: pointer;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+#btn-new { background: #4CAF50; color: white; }
+#btn-new:hover { background: #45a049; }
+
+#btn-save-git { background: #008CBA; color: white; }
+#btn-save-git:hover { background: #007B9E; }
+#btn-save-git:disabled { background: #666; cursor: not-allowed; }
+
+#btn-config { background: transparent; font-size: 1.5rem; }
+
+#status-text { font-size: 0.9rem; color: #ccc; }
+
+/* Tablero */
+#board {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 60px;
+}
+
+/* Post-it */
+.postit {
+    position: absolute;
+    width: 200px;
+    min-height: 200px;
+    padding: 15px;
+    box-shadow: 3px 5px 10px rgba(0,0,0,0.3);
+    cursor: grab;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    /* Efecto papel */
+    border-bottom-right-radius: 20px 5px;
+    transition: transform 0.1s;
+}
+
+.postit:active { cursor: grabbing; box-shadow: 5px 8px 15px rgba(0,0,0,0.4); }
+
+.postit-text {
+    flex-grow: 1;
+    font-size: 1rem;
+    white-space: pre-wrap;
+    cursor: text;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.postit-textarea {
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    resize: none;
+    border: 1px dashed rgba(0,0,0,0.2);
+    background: transparent;
+    font-family: inherit;
+    font-size: 1rem;
+    color: #333;
+    outline: none;
+}
+
+/* Footer del Post-it (Fecha y Colores) */
+.postit-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: #555;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    padding-top: 5px;
+}
+
+.color-palette {
+    display: flex;
+    gap: 5px;
+}
+
+.color-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.2);
+}
+
+/* Botón de borrar */
+.btn-delete {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 25px;
+    height: 25px;
+    background: #ff4c4c;
+    color: white;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.postit:hover .btn-delete { display: flex; }
+
+/* Modales */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 2000;
+}
+
+.modal.hidden { display: none; }
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-content h2 { margin-top: 0; }
+.modal-content input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+.modal-buttons { display: flex; justify-content: flex-end; gap: 10px; margin-top: 15px; }
+
+.btn-primary { background: #4CAF50; color: white; }
+.btn-danger { background: #f44336; color: white; }
+
+.error-msg { color: #f44336; font-size: 0.9rem; margin-top: 5px; }

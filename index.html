@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizarra de Post-its</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Barra superior -->
+    <header class="toolbar">
+        <div class="toolbar-left">
+            <h1>Mis Post-its</h1>
+            <button id="btn-new">+ Nuevo Post-it</button>
+        </div>
+        <div class="toolbar-right">
+            <span id="status-text">Cargando...</span>
+            <button id="btn-save-git" disabled>Guardar (git)</button>
+            <button id="btn-config" title="Configuración">⚙️</button>
+        </div>
+    </header>
+
+    <!-- Tablero (Corcho) -->
+    <main id="board"></main>
+
+    <!-- Modal de Configuración -->
+    <div id="config-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Configuración de GitHub</h2>
+            <p>Conectá tu repositorio para guardar los post-its.</p>
+            
+            <label>Usuario de GitHub:</label>
+            <input type="text" id="conf-user" placeholder="Ej: octocat">
+            
+            <label>Repositorio:</label>
+            <input type="text" id="conf-repo" placeholder="Ej: mi-pizarra">
+            
+            <label>Rama:</label>
+            <input type="text" id="conf-branch" value="data">
+            
+            <label>Ruta del archivo:</label>
+            <input type="text" id="conf-path" value="data/datos.json">
+            
+            <label>Token (Fine-grained):</label>
+            <input type="password" id="conf-token" placeholder="github_pat_...">
+            
+            <div class="modal-buttons">
+                <button id="btn-forget" class="btn-danger">Olvidar token</button>
+                <button id="btn-save-config" class="btn-primary">Guardar y Conectar</button>
+            </div>
+            <div id="config-error" class="error-msg"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
